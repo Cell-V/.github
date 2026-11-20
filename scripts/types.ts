@@ -173,7 +173,15 @@ export interface RepoSyncResult {
   errors: string[];
   /** True when the repository was skipped entirely (e.g. access denied). */
   skipped: boolean;
+  /**
+   * Labels on the repository that no definition manages. They are always
+   * preserved; the report lists them for information only.
+   */
+  extra: string[];
 }
+
+/** Execution mode of a label sync run. */
+export type LabelSyncMode = "dry-run" | "apply";
 
 /**
  * Aggregate report across all synchronized repositories.
@@ -186,4 +194,12 @@ export interface LabelSyncReport {
   conflictCount: number;
   errorCount: number;
   repoCount: number;
+  /** `dry-run` plans only; `apply` writes to GitHub. */
+  mode: LabelSyncMode;
+  /** Total unmanaged labels found across all repositories. */
+  extraCount: number;
+  /** Create + update + rename operations planned (dry-run) or performed (apply). */
+  writeCount: number;
+  /** Targets not processed because the write budget ran out. Re-run to continue. */
+  remaining: string[];
 }

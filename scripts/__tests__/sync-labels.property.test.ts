@@ -40,6 +40,9 @@ import {
   LabelsClient,
   RepoRef,
 } from "../sync-labels";
+
+/** Apply mode without throttling: these tests check write behavior. */
+const APPLY = { apply: true, writeDelayMs: 0 };
 import { LabelDefinition, ExistingLabel } from "../types";
 
 /** Number of generated cases per property. */
@@ -281,7 +284,7 @@ test("Property 4: sync converges the repo to the definitions exactly", async () 
     fc.asyncProperty(scenarioArb, async ({ definitions, existing }) => {
       const { client, labels } = makeFakeClient(existing);
 
-      const result = await syncRepoLabels(client, ref, definitions);
+      const result = await syncRepoLabels(client, ref, definitions, APPLY);
 
       // Sync must not have skipped or errored on a reachable fake repo.
       assert.equal(result.skipped, false);
@@ -325,7 +328,7 @@ test("Property 4: a second sync performs no create/update/rename operations", as
       const { client, labels } = makeFakeClient(existing);
 
       // First sync converges the repo.
-      await syncRepoLabels(client, ref, definitions);
+      await syncRepoLabels(client, ref, definitions, APPLY);
 
       // The planner must now see nothing to do.
       const planned = planLabelSync(definitions, labels);
@@ -339,7 +342,7 @@ test("Property 4: a second sync performs no create/update/rename operations", as
       );
 
       // A second end-to-end sync records zero create/update/rename results.
-      const second = await syncRepoLabels(client, ref, definitions);
+      const second = await syncRepoLabels(client, ref, definitions, APPLY);
       assert.deepEqual(second.created, []);
       assert.deepEqual(second.updated, []);
       assert.deepEqual(second.renamed, []);
@@ -358,7 +361,7 @@ test("Property 4: unrelated labels are left untouched by sync", async () => {
     fc.asyncProperty(scenarioArb, async ({ definitions, existing, unrelated }) => {
       const { client, labels } = makeFakeClient(existing);
 
-      await syncRepoLabels(client, ref, definitions);
+      await syncRepoLabels(client, ref, definitions, APPLY);
 
       for (const u of unrelated) {
         const match = labels.find((l) => key(l.name) === key(u.name));

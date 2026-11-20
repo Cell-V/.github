@@ -40,6 +40,8 @@ npm run validate    # validate labels, issue templates, FUNDING.yml, and workflo
 
 `npm run validate` needs no credentials and no network access. It exits with a non-zero status when a file is not valid.
 
+Label sync needs credentials and explicit targets. It is a dry run unless you pass `--apply`. See [docs/label-sync.md](docs/label-sync.md).
+
 ## Change process
 
 1. Read [CONTRIBUTING.md](CONTRIBUTING.md).

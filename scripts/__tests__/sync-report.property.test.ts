@@ -42,6 +42,9 @@ import {
   createLabelsClient,
   RepoRef,
 } from "../sync-labels";
+
+/** Apply mode without throttling: these tests check write behavior. */
+const APPLY = { apply: true, writeDelayMs: 0 };
 import { LabelDefinition, ExistingLabel } from "../types";
 
 /** Number of generated cases for the property test. */
@@ -364,7 +367,7 @@ test("Property 5: report counts equal the API operations actually performed", as
       const mock = makeMockOctokit({ [slug]: existing });
       const client = createLabelsClient(mock.octokit as never);
 
-      const report = await syncLabels(client, [ref], definitions);
+      const report = await syncLabels(client, [ref], definitions, APPLY);
 
       const actual = mock.actualCounts();
 
@@ -428,7 +431,7 @@ test("Property 5: aggregate counts across repos equal total API operations", asy
         // repos to keep the API-call accounting unambiguous.
         const definitions = scenarios[0].definitions;
 
-        const report = await syncLabels(client, repos, definitions);
+        const report = await syncLabels(client, repos, definitions, APPLY);
         const actual = mock.actualCounts();
 
         assert.equal(report.createdCount, actual.created);
@@ -466,7 +469,7 @@ test("create path: absent label is created once and reported as created", async 
     { name: "bug", color: "d73a4a", description: "Something is broken" },
   ];
 
-  const report = await syncLabels(client, [ref], definitions);
+  const report = await syncLabels(client, [ref], definitions, APPLY);
   const actual = mock.actualCounts();
 
   assert.deepEqual(actual, { created: 1, updated: 0, renamed: 0 });
@@ -489,7 +492,7 @@ test("update path: divergent label is updated once and reported as updated", asy
     { name: "bug", color: "d73a4a", description: "Something is broken" },
   ];
 
-  const report = await syncLabels(client, [ref], definitions);
+  const report = await syncLabels(client, [ref], definitions, APPLY);
   const actual = mock.actualCounts();
 
   assert.deepEqual(actual, { created: 0, updated: 1, renamed: 0 });
@@ -518,7 +521,7 @@ test("rename path: alias match is renamed once and reported as renamed", async (
     },
   ];
 
-  const report = await syncLabels(client, [ref], definitions);
+  const report = await syncLabels(client, [ref], definitions, APPLY);
   const actual = mock.actualCounts();
 
   // A rename is one updateLabel API call tagged as a rename.
@@ -554,7 +557,7 @@ test("conflict path: alias rename skipped when canonical name already exists", a
     },
   ];
 
-  const report = await syncLabels(client, [ref], definitions);
+  const report = await syncLabels(client, [ref], definitions, APPLY);
   const actual = mock.actualCounts();
 
   // No API mutations at all: the canonical label already matches exactly.
@@ -580,7 +583,7 @@ test("archived repos are skipped and contribute no operations to the report", as
     { owner: OWNER, repo: "active" },
   ];
 
-  const report = await syncLabels(client, repos, definitions);
+  const report = await syncLabels(client, repos, definitions, APPLY);
   const actual = mock.actualCounts();
 
   // Only the active repo triggers a create; the archived repo is untouched.
@@ -610,7 +613,7 @@ test("access-denied repo is recorded as an error without aborting others", async
     { owner: OWNER, repo: "ok" },
   ];
 
-  const report = await syncLabels(client, repos, definitions);
+  const report = await syncLabels(client, repos, definitions, APPLY);
   const actual = mock.actualCounts();
 
   // The reachable repo still gets its create; the denied repo errors out.

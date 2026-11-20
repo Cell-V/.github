@@ -22,7 +22,7 @@ This document describes how each type of configuration in this repository reache
 | Pull request template | `.github/pull_request_template.md` | Inherited | A local PR template replaces it | |
 | Workflow starters | `workflow-templates/` | Opt-in copy | Not applicable: the copy belongs to the target | Edits here do not update copies already adopted. |
 | Reusable workflows | None yet | Reference (`uses: Cell-V/.github/.github/workflows/<file>.yml@<ref>`) | Caller chooses the ref | Public callers can only call reusable workflows in public repositories. |
-| Labels | `.github/labels.yml` | Automation (label sync) | Extra local labels are kept | Organization default labels in settings only seed **new** repositories. They do not update existing ones. |
+| Labels | `.github/labels.yml` | Automation ([label sync](label-sync.md)) | Extra local labels are kept | Organization default labels in settings only seed **new** repositories. They do not update existing ones. |
 | License | None | Not inherited | Not applicable | Add a `LICENSE` file to each repository. GitHub does not use a default license. |
 | CODEOWNERS | `CODEOWNERS` (this repository only) | Not inherited | Not applicable | Add a `CODEOWNERS` file to each repository that needs one. It applies per branch. |
 | Dependabot | None yet | Not inherited | Not applicable | Add `.github/dependabot.yml` to each repository. |
