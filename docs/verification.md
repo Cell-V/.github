@@ -67,7 +67,7 @@ We ran the [verification checklist](security-baseline.md#verification-checklist)
 | H-01 | Repository is public | Pass |
 | H-02 | Dependency alerts, security updates, secret scanning, push protection, private vulnerability reporting | Pass |
 | H-03 | Default `GITHUB_TOKEN` permissions are `read` | Pass |
-| H-04 | Branch protection or a ruleset on `main` matches [branch-protection.md](../.github/branch-protection.md) | Fail. Not configured yet. Configure before merge (R-06). |
+| H-04 | Branch protection or a ruleset on `main` matches [branch-protection.md](../.github/branch-protection.md) | Fail at first check: not configured. Applied on 2026-11-21 with the documented exception of 0 required approvals (R-06). |
 | H-05 | `CODEOWNERS` names owners that exist | Fail. See F-05. |
 
 ### Inheritance and adoption checks
@@ -103,7 +103,7 @@ gh api repos/Cell-V/<sandbox>/community/profile --jq '.files | map_values(.html_
 | R-03 | Turn on organization Discussions with this repository as the source, or remove the Discussions links | Organization owner | Open |
 | R-04 | Set `CODEOWNERS` to a team that exists and has write access | Organization owner | In progress. `CODEOWNERS` names `@Cell-V/developers`. On 2026-11-21 the team got write (`push`) access to this repository. `gh api repos/Cell-V/.github/teams` confirms it. Still to do: after `CODEOWNERS` is on `main`, confirm that a pull request requests a review from the team. |
 | R-05 | Run label sync with `--apply` on the hub and on each target before you depend on form labels | Maintainer | Open. Needs authorization. |
-| R-06 | Configure branch protection or a ruleset on `main` as [branch-protection.md](../.github/branch-protection.md) describes | Organization owner | Open |
+| R-06 | Configure branch protection or a ruleset on `main` as [branch-protection.md](../.github/branch-protection.md) describes | Organization owner | Done with an exception. On 2026-11-21, classic branch protection was applied: pull request required, stale reviews dismissed, conversation resolution required, rules apply to administrators, no force push, no deletion. Required approvals are 0, because the organization has one member with write access. Set them to 1 when a second reviewer joins. Still to do: confirm that a direct push to `main` is rejected. |
 | R-07 | Add a workflow linter to CI, or run `actionlint` locally before merge | Maintainer | Open |
 
 ## Reported results that are not verified here

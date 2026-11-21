@@ -28,6 +28,10 @@ The following rules apply to the default branch (typically `main`):
   including users with administrative permissions, so the default branch cannot
   be bypassed.
 
+### Current exception
+
+Since 2026-11-21, `main` requires **0** approving reviews, not 1. The organization has one member with write access, and GitHub does not let an author approve their own pull request. All other rules above are active, including the rule for administrators. Set the required approvals to `1` when a second person with write access joins `@Cell-V/developers`.
+
 ### Expected behavior
 
 - A direct push to the protected default branch is rejected. Contributors must
