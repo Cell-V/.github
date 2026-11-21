@@ -38,4 +38,4 @@ To help us respond faster, please include the following when relevant:
 ## Contributing
 
 If you would like to contribute a fix or improvement, see our
-[Contributing Guidelines](CONTRIBUTING.md).
+[Contributing Guidelines](https://github.com/Cell-V/.github/blob/main/CONTRIBUTING.md).
