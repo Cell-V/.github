@@ -2,7 +2,6 @@
 
 [![Repositories](https://img.shields.io/badge/repositories-explore-blue?logo=github)](https://github.com/orgs/Cell-V/repositories)
 [![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-v2.1-ff69b4)](https://github.com/Cell-V/.github/blob/main/CODE_OF_CONDUCT.md)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
 ## About
 
