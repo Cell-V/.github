@@ -101,7 +101,7 @@ gh api repos/Cell-V/<sandbox>/community/profile --jq '.files | map_values(.html_
 | R-01 | Replace personal and placeholder contacts and names in `config.yml`, `SUPPORT.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, and `profile/README.md` with confirmed `Cell-V` values | Organization owner | Open. Needs the real values. |
 | R-02 | Decide on funding. Set real accounts in `FUNDING.yml`, or delete the file so that no **Sponsor** button shows | Organization owner | Open |
 | R-03 | Turn on organization Discussions with this repository as the source, or remove the Discussions links | Organization owner | Open |
-| R-04 | Set `CODEOWNERS` to a team that exists and has write access | Organization owner | In progress. `CODEOWNERS` now names `@Cell-V/developers`. Give that team write access to this repository, then confirm that the **Files changed** tab of a pull request shows no `CODEOWNERS` error. |
+| R-04 | Set `CODEOWNERS` to a team that exists and has write access | Organization owner | In progress. `CODEOWNERS` names `@Cell-V/developers`. On 2026-11-21 the team got write (`push`) access to this repository. `gh api repos/Cell-V/.github/teams` confirms it. Still to do: after `CODEOWNERS` is on `main`, confirm that a pull request requests a review from the team. |
 | R-05 | Run label sync with `--apply` on the hub and on each target before you depend on form labels | Maintainer | Open. Needs authorization. |
 | R-06 | Configure branch protection or a ruleset on `main` as [branch-protection.md](../.github/branch-protection.md) describes | Organization owner | Open |
 | R-07 | Add a workflow linter to CI, or run `actionlint` locally before merge | Maintainer | Open |
