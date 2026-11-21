@@ -4,10 +4,10 @@
 blank_issues_enabled: false
 contact_links:
   - name: Questions & Discussions
-    url: https://github.com/orgs/massimoselvi/discussions
+    url: https://github.com/orgs/Cell-V/discussions
     about: Ask questions, share ideas, or get general help from the community in GitHub Discussions instead of opening an issue.
   - name: Report a Security Vulnerability
-    url: https://github.com/massimoselvi/.github/security/advisories/new
+    url: https://github.com/Cell-V/.github/security/advisories/new
     about: Privately disclose a security vulnerability through GitHub Security Advisories. Please do not open a public issue.
   - name: Email Support
     url: https://massimoselvi.com
