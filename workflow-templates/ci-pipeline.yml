@@ -78,7 +78,6 @@ jobs:
 
       - name: Build project
         run: npm run build --if-present
-        env:
-          # Reference organization-level secrets only via the secrets context.
-          # Never hardcode token, password, or key values in this template.
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        # No secrets here: this job also runs on pull_request, where the
+        # branch code controls the build script. Publish from a separate
+        # workflow that runs only on trusted events (for example a release).
