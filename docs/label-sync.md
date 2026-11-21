@@ -18,7 +18,9 @@ For each label in the catalog, in this order:
 2. Else, a label matches one of the `aliases`: the script renames it to the canonical name. Issues and pull requests keep the label, under its new name.
 3. Else: the script creates the label.
 
-If the canonical name and an alias both exist, the script does not rename. It reports a conflict. Resolve the conflict by hand.
+If the canonical name and an alias both exist, the script updates the canonical label and does not rename the alias label. The report lists the alias label under `extra`. To merge the two labels, move the issues to the canonical label and delete the alias label by hand. The report shows a conflict only when a rename would use a name that another operation in the same run already took.
+
+For a worked example, see the fixtures in [`scripts/__tests__/fixtures/label-sync/`](../scripts/__tests__/fixtures/label-sync/): the input catalog (`labels.yml`), the current labels of two repositories (`repositories.json`), and the dry-run report as text (`expected-report.txt`) and JSON (`expected-report.json`). `scripts/__tests__/label-sync-fixtures.test.ts` checks that the script still produces these reports.
 
 Check renames in the dry-run report before you apply. A rename changes the label name on every issue and pull request that uses it.
 
