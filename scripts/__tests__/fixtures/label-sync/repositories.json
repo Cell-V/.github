@@ -1,0 +1,15 @@
+{
+  "Cell-V/example-app": [
+    { "name": "Bug", "color": "ee0701", "description": "Something isn't working" },
+    { "name": "feature", "color": "84b6eb", "description": "New feature" },
+    { "name": "docs", "color": "0075ca", "description": "Docs" },
+    { "name": "documentation", "color": "0075ca", "description": "Improvements or additions to documentation" },
+    { "name": "wontfix", "color": "ffffff", "description": "This will not be worked on" }
+  ],
+  "Cell-V/example-api": [
+    { "name": "bug", "color": "d73a4a", "description": "Something isn't working as expected" },
+    { "name": "enhancement", "color": "a2eeef", "description": "An improvement to existing functionality" },
+    { "name": "documentation", "color": "0075ca", "description": "Improvements or additions to documentation" },
+    { "name": "triage", "color": "ededed", "description": "Needs initial review and categorization" }
+  ]
+}

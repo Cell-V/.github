@@ -1,0 +1,16 @@
+Label sync report (dry-run)
+==============================
+DRY RUN: no changes were written. Re-run with --apply to write.
+Repositories processed: 2
+Totals (planned): created: 1, updated: 1, renamed: 1, conflicts: 0, errors: 0, extra (preserved): 2
+Writes planned: 3
+
+• Cell-V/example-app
+    created (1): triage
+    updated (1): bug
+    renamed (1): feature → enhancement
+    extra, preserved (2): docs, wontfix
+• Cell-V/example-api
+    created (0): —
+    updated (0): —
+    renamed (0): —

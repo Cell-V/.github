@@ -1,0 +1,46 @@
+{
+  "repos": [
+    {
+      "repo": "Cell-V/example-app",
+      "created": [
+        "triage"
+      ],
+      "updated": [
+        "bug"
+      ],
+      "renamed": [
+        {
+          "from": "feature",
+          "to": "enhancement"
+        }
+      ],
+      "conflicts": [],
+      "errors": [],
+      "skipped": false,
+      "extra": [
+        "docs",
+        "wontfix"
+      ]
+    },
+    {
+      "repo": "Cell-V/example-api",
+      "created": [],
+      "updated": [],
+      "renamed": [],
+      "conflicts": [],
+      "errors": [],
+      "skipped": false,
+      "extra": []
+    }
+  ],
+  "createdCount": 1,
+  "updatedCount": 1,
+  "renamedCount": 1,
+  "conflictCount": 0,
+  "errorCount": 0,
+  "repoCount": 2,
+  "mode": "dry-run",
+  "extraCount": 2,
+  "writeCount": 3,
+  "remaining": []
+}
