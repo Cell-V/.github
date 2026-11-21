@@ -22,6 +22,8 @@
  * exits with a non-zero status code if ANY validator fails.
  */
 
+import * as fs from "fs";
+
 import { ValidationResult } from "./types";
 import { validateLabelsFile, DEFAULT_LABELS_PATH } from "./validate-labels";
 import {
@@ -96,7 +98,15 @@ export function validateAll(options: ValidateAllOptions = {}): ConsolidatedRepor
     {
       name: "Funding configuration",
       target: fundingPath,
-      result: validateFundingFile(fundingPath),
+      // FUNDING.yml is optional: without it, GitHub shows no Sponsor button.
+      // Validate it only when it exists.
+      result: fs.existsSync(fundingPath)
+        ? validateFundingFile(fundingPath)
+        : {
+            valid: true,
+            errors: [],
+            warnings: [`${fundingPath}: not present (optional); skipped.`],
+          },
     },
     {
       name: "Workflow templates",

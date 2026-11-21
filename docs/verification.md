@@ -100,7 +100,7 @@ gh api repos/Cell-V/<sandbox>/community/profile --jq '.files | map_values(.html_
 | ID | Action | Owner | Status |
 | --- | --- | --- | --- |
 | R-01 | Replace personal and placeholder contacts and names in `config.yml`, `SUPPORT.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, and `profile/README.md` with confirmed `Cell-V` values | Organization owner | Open. Needs the real values. |
-| R-02 | Decide on funding. Set real accounts in `FUNDING.yml`, or delete the file so that no **Sponsor** button shows | Organization owner | Open |
+| R-02 | Decide on funding. Set real accounts in `FUNDING.yml`, or delete the file so that no **Sponsor** button shows | Organization owner | Done on 2026-11-21. Decision: no funding. `FUNDING.yml` is deleted. `npm run validate` now skips a missing `FUNDING.yml` with a warning. `scripts/__tests__/validate-all.test.ts` covers this. |
 | R-03 | Turn on organization Discussions with this repository as the source, or remove the Discussions links | Organization owner | Done on 2026-11-21. Decision: Discussions stays off. The links are removed from `profile/README.md`, `SUPPORT.md`, and `.github/ISSUE_TEMPLATE/config.yml`. |
 | R-04 | Set `CODEOWNERS` to a team that exists and has write access | Organization owner | In progress. `CODEOWNERS` names `@Cell-V/developers`. On 2026-11-21 the team got write (`push`) access to this repository. `gh api repos/Cell-V/.github/teams` confirms it. Still to do: after `CODEOWNERS` is on `main`, confirm that a pull request requests a review from the team. |
 | R-05 | Run label sync with `--apply` on the hub and on each target before you depend on form labels | Maintainer | Open. Needs authorization. |
