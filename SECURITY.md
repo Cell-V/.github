@@ -16,7 +16,7 @@ Use one of the following private disclosure channels, in order of preference:
    vulnerability**. This keeps the report confidential and lets us collaborate
    with you on a fix before any public disclosure.
 2. **Dedicated security email.** If GitHub Security Advisories are unavailable,
-   email us at `security@example.com`.
+   email us at `security@massimoselvi.com`.
 
 When reporting, please include as much of the following as you can:
 

@@ -68,8 +68,7 @@ appropriate.
 
 If you experience or witness unacceptable behavior, or have any other concerns,
 please report it privately to the organization maintainers at
-<conduct@example.com> (placeholder — replace with the organization's real
-contact address).
+<conduct@massimoselvi.com>.
 
 All reports will be reviewed and investigated promptly and fairly. All
 maintainers are obligated to respect the privacy and security of the reporter of
@@ -97,8 +96,7 @@ Any person subject to an enforcement action may appeal the decision. To
 request a review:
 
 1. Send an appeal within 30 days of the enforcement action to
-   <conduct@example.com> (placeholder — replace with the organization's real
-   contact address), stating the action taken and the reason you believe it
+   <conduct@massimoselvi.com>, stating the action taken and the reason you believe it
    should be reconsidered.
 2. The appeal will be reviewed by one or more maintainers who were not
    directly involved in the original enforcement decision, where possible.
