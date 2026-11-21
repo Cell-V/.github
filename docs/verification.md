@@ -44,6 +44,7 @@ L-04 checks structure only. It does not detect placeholder values. See F-01 and 
 | F-04 | Discussions links resolve | Fail | The profile, `SUPPORT.md`, and the issue chooser link to organization Discussions. Organization Discussions is not turned on. | R-03 |
 | F-05 | `CODEOWNERS` names a team that exists and has write access | Fail | `CODEOWNERS` named `@Cell-V/massimoselvi-dev`. The organization has no team with that name. GitHub ignores an owner that does not exist, so no review is requested. Changed to `@Cell-V/developers`. That team exists, but `gh api repos/Cell-V/.github/teams` returns no team, so it has no write access yet. | R-04 |
 | F-06 | Issue forms apply labels that exist | Fail | The forms apply `triage`. The hub repository does not have `triage` yet. See S-01. | R-05 |
+| F-07 | Inherited files use absolute links to this repository | Fail | `SUPPORT.md` and `CONTRIBUTING.md` had five relative links to other policy files. A relative link breaks when the file is inherited. Fixed on 2026-11-21: all five now use `https://github.com/Cell-V/.github/blob/main/...`. | R-08 |
 
 ### Label sync dry-run
 
@@ -100,11 +101,12 @@ gh api repos/Cell-V/<sandbox>/community/profile --jq '.files | map_values(.html_
 | --- | --- | --- | --- |
 | R-01 | Replace personal and placeholder contacts and names in `config.yml`, `SUPPORT.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, and `profile/README.md` with confirmed `Cell-V` values | Organization owner | Open. Needs the real values. |
 | R-02 | Decide on funding. Set real accounts in `FUNDING.yml`, or delete the file so that no **Sponsor** button shows | Organization owner | Open |
-| R-03 | Turn on organization Discussions with this repository as the source, or remove the Discussions links | Organization owner | Open |
+| R-03 | Turn on organization Discussions with this repository as the source, or remove the Discussions links | Organization owner | Done on 2026-11-21. Decision: Discussions stays off. The links are removed from `profile/README.md`, `SUPPORT.md`, and `.github/ISSUE_TEMPLATE/config.yml`. |
 | R-04 | Set `CODEOWNERS` to a team that exists and has write access | Organization owner | In progress. `CODEOWNERS` names `@Cell-V/developers`. On 2026-11-21 the team got write (`push`) access to this repository. `gh api repos/Cell-V/.github/teams` confirms it. Still to do: after `CODEOWNERS` is on `main`, confirm that a pull request requests a review from the team. |
 | R-05 | Run label sync with `--apply` on the hub and on each target before you depend on form labels | Maintainer | Open. Needs authorization. |
 | R-06 | Configure branch protection or a ruleset on `main` as [branch-protection.md](../.github/branch-protection.md) describes | Organization owner | Done with an exception. On 2026-11-21, classic branch protection was applied: pull request required, stale reviews dismissed, conversation resolution required, rules apply to administrators, no force push, no deletion. Required approvals are 0, because the organization has one member with write access. Set them to 1 when a second reviewer joins. Still to do: confirm that a direct push to `main` is rejected. |
 | R-07 | Add a workflow linter to CI, or run `actionlint` locally before merge | Maintainer | Open |
+| R-08 | Replace relative links in inherited files with absolute URLs to this repository | Maintainer | Done on 2026-11-21. Still to do: confirm in D-02 that the links resolve from an inheriting repository. |
 
 ## Reported results that are not verified here
 
