@@ -47,9 +47,9 @@ import {
 const NUM_RUNS = 500;
 
 /** The workflow filename every generated template is validated against. */
-const WORKFLOW_NAME = "ci-pipeline.yml";
+const WORKFLOW_NAME = "typescript-ci.yml";
 /** Base name (without extension) the properties `name` field must match. */
-const WORKFLOW_BASE = "ci-pipeline";
+const WORKFLOW_BASE = "typescript-ci";
 
 /**
  * Build a VALID properties JSON document whose `name` matches the workflow
@@ -67,7 +67,7 @@ function validPropertiesSource(): string {
 }
 
 // Sanity check that the suffix import is wired correctly / documents intent.
-assert.equal(`${WORKFLOW_BASE}${PROPERTIES_SUFFIX}`, "ci-pipeline.properties.json");
+assert.equal(`${WORKFLOW_BASE}${PROPERTIES_SUFFIX}`, "typescript-ci.properties.json");
 
 // ---------------------------------------------------------------------------
 // Arbitraries

@@ -48,6 +48,23 @@ These rules apply to every inherited file in the matrix.
 
 GitHub replaces `$default-branch` with the default branch of the target repository. After adoption, the workflow is a normal file in the target repository. Later changes to the starter here do not reach it.
 
+### TypeScript CI starter
+
+`workflow-templates/typescript-ci.yml` runs one job: install with a frozen lockfile, then type-check, lint, test, and build. GitHub suggests it for repositories with `pnpm-lock.yaml` or `tsconfig.json`.
+
+Prerequisites in the target repository:
+
+- `package.json` declares pnpm in `packageManager`, for example `"packageManager": "pnpm@10.12.1"`. `pnpm/action-setup` reads the pnpm version from this field. Without it, the setup step fails.
+- `pnpm-lock.yaml` is committed. `pnpm install --frozen-lockfile` fails if the lockfile does not match `package.json`.
+- The scripts `typecheck`, `lint`, `test`, and `build` are optional. The starter skips a script that does not exist.
+
+Customization after adoption:
+
+- Node.js version: change `node-version` (default `24`), or use `node-version-file: .nvmrc`.
+- Steps: remove the steps that the repository does not need, or add steps for other checks.
+- Required status check: the job name is `Type-check, lint, test, and build`. If a ruleset requires this check, keep the name, or update the ruleset in the same change.
+- Secrets: do not add secrets to this workflow. It runs on `pull_request`, where the branch code controls the scripts. Publish from a separate workflow that runs only on trusted events.
+
 ## Security features
 
 `SECURITY.md` tells reporters where to send a vulnerability. It does not turn on any feature. An administrator must turn on these features in organization or repository settings, or through security configurations:

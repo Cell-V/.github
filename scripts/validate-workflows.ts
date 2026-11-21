@@ -101,7 +101,7 @@ const HARDCODED_SECRET_PATTERNS: ReadonlyArray<{
  * Validate a single workflow template and its accompanying properties file,
  * supplied in memory.
  *
- * @param workflowName    The workflow template filename (e.g. `ci-pipeline.yml`).
+ * @param workflowName    The workflow template filename (e.g. `typescript-ci.yml`).
  * @param workflowSource  Raw YAML content of the workflow template, or `null`
  *                        when the workflow file is missing (orphaned
  *                        properties file).
