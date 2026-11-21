@@ -25,9 +25,9 @@ This document describes how each type of configuration in this repository reache
 | Labels | `.github/labels.yml` | Automation ([label sync](label-sync.md)) | Extra local labels are kept | Organization default labels in settings only seed **new** repositories. They do not update existing ones. |
 | License | None | Not inherited | Not applicable | Add a `LICENSE` file to each repository. GitHub does not use a default license. |
 | CODEOWNERS | `CODEOWNERS` (this repository only) | Not inherited | Not applicable | Add a `CODEOWNERS` file to each repository that needs one. It applies per branch. |
-| Dependabot | None yet | Not inherited | Not applicable | Add `.github/dependabot.yml` to each repository. |
-| Branch protection and rulesets | `.github/branch-protection.md` (documentation) | Settings | Not applicable | Availability depends on the plan and on repository visibility. |
-| Security features | None | Settings | Not applicable | Dependency alerts, secret scanning, push protection, code scanning, and private vulnerability reporting. |
+| Dependabot | `.github/dependabot.yml` (this repository only) | Not inherited | Not applicable | Add `.github/dependabot.yml` to each repository. See the [security baseline](security-baseline.md#example-dependabotyml). |
+| Branch protection and rulesets | `.github/branch-protection.md` (documentation) | Settings | Not applicable | Availability depends on the plan and on repository visibility. See the [security baseline](security-baseline.md#plan-and-availability). |
+| Security features | [docs/security-baseline.md](security-baseline.md) (documentation) | Settings | Not applicable | Dependency alerts, secret scanning, push protection, code scanning, and private vulnerability reporting. |
 | Actions permissions | None | Settings | Not applicable | Default `GITHUB_TOKEN` permissions and allowed actions. |
 
 ## Inheritance rules

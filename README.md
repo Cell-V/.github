@@ -21,6 +21,7 @@ This repository is **not** a general configuration inheritance mechanism. Most s
 | `workflow-templates/` | Opt-in template | Workflow starters shown in each repository's **Actions → New workflow** page. |
 | `.github/labels.yml` | Explicit automation | Canonical label catalog, the source of truth for label sync. |
 | `.github/workflows/` | Automation for this repository | CI for this repository and the manually triggered label sync. |
+| `.github/dependabot.yml` | Local to this repository | Dependabot version updates for this repository only. It does not inherit. |
 | `.github/branch-protection.md` | Documentation | Branch protection rules for this repository. GitHub does not read it. |
 | `CODEOWNERS` | Local to this repository | Review owners for this repository only. It does not inherit. |
 | `scripts/` | Tooling | TypeScript validators, label sync, and tests. |
@@ -41,6 +42,8 @@ npm run validate    # validate labels, issue templates, FUNDING.yml, and workflo
 `npm run validate` needs no credentials and no network access. It exits with a non-zero status when a file is not valid.
 
 Label sync needs credentials and explicit targets. It is a dry run unless you pass `--apply`. See [docs/label-sync.md](docs/label-sync.md).
+
+Security controls come mostly from settings, not files. See [docs/security-baseline.md](docs/security-baseline.md).
 
 ## Change process
 
