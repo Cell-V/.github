@@ -1,9 +1,10 @@
 name: Feature Request
 description: Suggest a new feature or enhancement
 title: "[Feature]: "
+# Assign only GitHub default labels. They exist in most repositories before
+# a label sync runs. GitHub does not create a missing label.
 labels:
   - enhancement
-  - triage
 body:
   - type: markdown
     attributes:
