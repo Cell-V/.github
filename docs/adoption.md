@@ -17,7 +17,7 @@ This document describes how each type of configuration in this repository reache
 | Contributing guide | `CONTRIBUTING.md` | Inherited | A local `CONTRIBUTING.md` replaces it | Put project-specific build and test steps in the local file. |
 | Security policy | `SECURITY.md` | Inherited | A local `SECURITY.md` replaces it | Reporting guidance only. It does not turn on any security feature. See [Security features](#security-features). |
 | Support guide | `SUPPORT.md` | Inherited | A local `SUPPORT.md` replaces it | |
-| Funding | `FUNDING.yml` | Inherited | A local `.github/FUNDING.yml` replaces it | Shows a **Sponsor** button on every inheriting repository. |
+| Funding | None | Inherited when present | A local `.github/FUNDING.yml` adds a **Sponsor** button to that repository | This repository has no `FUNDING.yml`, so no repository inherits a **Sponsor** button. If you add one, every repository without a local file shows it. |
 | Issue forms and chooser | `.github/ISSUE_TEMPLATE/` | Inherited as **one set** | **Any** file in the local `.github/ISSUE_TEMPLATE/` replaces the **whole** set | No merge. A local `config.yml` alone also disables all inherited forms. |
 | Pull request template | `.github/pull_request_template.md` | Inherited | A local PR template replaces it | |
 | Workflow starters | `workflow-templates/` | Opt-in copy | Not applicable: the copy belongs to the target | Edits here do not update copies already adopted. |
@@ -39,6 +39,10 @@ These rules apply to every inherited file in the matrix.
 3. **Issue templates are all or nothing.** If the target repository has any file in `.github/ISSUE_TEMPLATE/`, GitHub ignores all inherited issue templates and the inherited `config.yml`.
 4. **No copy.** Defaults are not copied into the target repository. They are not in clones, archives, or packages of the target repository.
 5. **Relative links break.** An inherited file is rendered in the context of the target repository. Use absolute URLs to files in this repository.
+6. **Form labels must exist in the target.** An inherited issue form applies its `labels` in the target repository. Run [label sync](label-sync.md) on the target before you depend on these labels.
+7. **Defaults come from the default branch.** GitHub reads defaults only from the default branch of this repository. Content on other branches or in open pull requests is not live.
+
+Verification results and open gaps are in [verification.md](verification.md).
 
 ## Adopting a workflow starter
 

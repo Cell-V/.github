@@ -15,7 +15,7 @@ our review process fast.
 - For anything beyond a small fix, open an issue first so we can agree on the
   approach before you invest time in it.
 - Be kind and constructive. All participation is governed by our
-  [Code of Conduct](./CODE_OF_CONDUCT.md).
+  [Code of Conduct](https://github.com/Cell-V/.github/blob/main/CODE_OF_CONDUCT.md).
 
 ## Branch Naming
 
@@ -117,6 +117,6 @@ What to expect during review:
 
 ## Questions
 
-If you get stuck or need direction, see [SUPPORT.md](./SUPPORT.md) for the best
-way to reach us. For security issues, follow [SECURITY.md](./SECURITY.md)
+If you get stuck or need direction, see [SUPPORT.md](https://github.com/Cell-V/.github/blob/main/SUPPORT.md) for the best
+way to reach us. For security issues, follow [SECURITY.md](https://github.com/Cell-V/.github/blob/main/SECURITY.md)
 instead of opening a public issue.

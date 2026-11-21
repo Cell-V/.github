@@ -5,7 +5,7 @@ name: CI
 # Runs the type check, the test suite, and the unified validation suite
 # (scripts/validate-all.ts via the "validate" npm script) on every push and
 # pull request. The unified runner validates the
-# label definitions, issue templates, funding configuration, and workflow
+# label definitions, issue templates, funding configuration (if present), and workflow
 # templates in a single pass and exits non-zero on any failure.
 #
 # On a pull request a failing job marks this required status check as failed, so
