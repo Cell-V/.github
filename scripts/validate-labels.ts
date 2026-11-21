@@ -15,6 +15,9 @@
  *     (case-insensitive). Any such collision rejects the whole file
  *     (Requirement 12.4).
  *   - A definition may declare at most 10 aliases (Requirement 12.6).
+ *   - `name` has at most 50 characters and `description` at most 100
+ *     characters. These are GitHub API limits: a longer value fails at sync
+ *     time, so it is rejected here.
  *
  * The module exports {@link validateLabels} (operating on raw YAML text) and
  * {@link validateLabelsFile} (reading from disk) so that it can be reused by
@@ -43,6 +46,12 @@ export const HEX_COLOR_PATTERN = /^[0-9a-fA-F]{6}$/;
 
 /** Maximum number of aliases permitted per label (Requirement 12.6). */
 export const MAX_ALIASES = 10;
+
+/** Maximum label name length accepted by the GitHub API. */
+export const MAX_NAME_LENGTH = 50;
+
+/** Maximum label description length accepted by the GitHub API. */
+export const MAX_DESCRIPTION_LENGTH = 100;
 
 /** Required scalar string fields on every label entry. */
 const REQUIRED_FIELDS = ["name", "color", "description"] as const;
@@ -146,6 +155,27 @@ export function validateLabels(
         result.errors.push(
           `${sourceName} (label "${name}"): invalid color "${color}" ` +
             `(must match ^[0-9a-fA-F]{6}$ with no leading '#'). Skipping entry.`,
+        );
+        result.valid = false;
+      }
+    }
+
+    // GitHub API length limits. Count code points, not UTF-16 units, so an
+    // emoji counts as one character.
+    const nameLength = [...name].length;
+    if (nameLength > MAX_NAME_LENGTH) {
+      result.errors.push(
+        `${sourceName} (label "${name}"): name has ${nameLength} characters ` +
+          `(maximum ${MAX_NAME_LENGTH}).`,
+      );
+      result.valid = false;
+    }
+    if (isNonEmptyString(entry.description)) {
+      const descriptionLength = [...(entry.description as string)].length;
+      if (descriptionLength > MAX_DESCRIPTION_LENGTH) {
+        result.errors.push(
+          `${sourceName} (label "${name}"): description has ` +
+            `${descriptionLength} characters (maximum ${MAX_DESCRIPTION_LENGTH}).`,
         );
         result.valid = false;
       }
