@@ -22,6 +22,8 @@ If the canonical name and an alias both exist, the script does not rename. It re
 
 Check renames in the dry-run report before you apply. A rename changes the label name on every issue and pull request that uses it.
 
+Renames have no separate option. `--apply` runs them together with creates and updates. A rename keeps the label on issues and pull requests, so it loses no data. To prevent a rename in one repository, remove the alias from `.github/labels.yml` before the run, or exclude that repository from the targets.
+
 ## Credentials
 
 The sync needs a token for the target repositories with these repository permissions:
