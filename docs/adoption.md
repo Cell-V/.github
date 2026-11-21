@@ -39,6 +39,10 @@ These rules apply to every inherited file in the matrix.
 3. **Issue templates are all or nothing.** If the target repository has any file in `.github/ISSUE_TEMPLATE/`, GitHub ignores all inherited issue templates and the inherited `config.yml`.
 4. **No copy.** Defaults are not copied into the target repository. They are not in clones, archives, or packages of the target repository.
 5. **Relative links break.** An inherited file is rendered in the context of the target repository. Use absolute URLs to files in this repository.
+6. **Form labels must exist in the target.** An inherited issue form applies its `labels` in the target repository. Run [label sync](label-sync.md) on the target before you depend on these labels.
+7. **Defaults come from the default branch.** GitHub reads defaults only from the default branch of this repository. Content on other branches or in open pull requests is not live.
+
+Verification results and open gaps are in [verification.md](verification.md).
 
 ## Adopting a workflow starter
 
