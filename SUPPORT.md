@@ -7,9 +7,6 @@ and what response times to expect.
 
 Please use the channel that best fits your need:
 
-- **GitHub Discussions**: For questions, ideas, and general help, start a
-  thread in the organization's
-  [GitHub Discussions](https://github.com/orgs/Cell-V/discussions).
 - **GitHub Issues**: For reproducible bugs or specific feature requests,
   open an issue in the relevant repository's issue tracker. Please search
   existing issues first to avoid duplicates.
@@ -26,7 +23,6 @@ longer during weekends and public holidays.
 
 | Channel | First Response |
 | --- | --- |
-| GitHub Discussions | Within 3 business days |
 | GitHub Issues | Within 5 business days |
 | Email | Within 2 business days |
 

@@ -1,7 +1,6 @@
 # Cell-V
 
 [![Repositories](https://img.shields.io/badge/repositories-explore-blue?logo=github)](https://github.com/orgs/Cell-V/repositories)
-[![Discussions](https://img.shields.io/badge/discussions-join-5865F2?logo=github)](https://github.com/orgs/Cell-V/discussions)
 [![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-v2.1-ff69b4)](https://github.com/Cell-V/.github/blob/main/CODE_OF_CONDUCT.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
@@ -28,7 +27,6 @@ We welcome contributions of all kinds. Here's where to start:
 
 - [Contributing guide](https://github.com/Cell-V/.github/blob/main/CONTRIBUTING.md) — branch naming, commit conventions, and pull request workflow.
 - [Good first issues](https://github.com/search?q=org%3ACell-V+is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22&type=issues) — a friendly place to make your first contribution.
-- [Discussions](https://github.com/orgs/Cell-V/discussions) — ask questions, share ideas, and connect with the community.
 
 ## Community Standards
 
