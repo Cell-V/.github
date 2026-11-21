@@ -15,7 +15,7 @@ This repository is **not** a general configuration inheritance mechanism. Most s
 | Path | Kind | Purpose |
 | --- | --- | --- |
 | `profile/README.md` | Organization profile | Public profile on the organization page. It is not a default README for other repositories. |
-| `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `SECURITY.md`, `SUPPORT.md`, `FUNDING.yml` | Inherited default | Fallback community health files. |
+| `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `SECURITY.md`, `SUPPORT.md` | Inherited default | Fallback community health files. |
 | `.github/ISSUE_TEMPLATE/` | Inherited default | Fallback issue forms and issue chooser configuration. |
 | `.github/pull_request_template.md` | Inherited default | Fallback pull request template. |
 | `workflow-templates/` | Opt-in template | Workflow starters shown in each repository's **Actions → New workflow** page. |
@@ -36,7 +36,7 @@ Requirements: Node.js 20 or later and npm.
 npm ci              # install the locked dependencies
 npm run typecheck   # type-check all scripts
 npm test            # run unit and property tests
-npm run validate    # validate labels, issue templates, FUNDING.yml, and workflow templates
+npm run validate    # validate labels, issue templates, FUNDING.yml (if present), and workflow templates
 ```
 
 `npm run validate` needs no credentials and no network access. It exits with a non-zero status when a file is not valid.

@@ -6,7 +6,7 @@
  *
  *   - Label definitions   (`.github/labels.yml`)           — Requirements 11.4
  *   - Issue templates      (`.github/ISSUE_TEMPLATE/`)      — Requirement 6.4
- *   - Funding config       (`FUNDING.yml`)                  — Requirement 4.5
+ *   - Funding config       (`FUNDING.yml`, optional)        — Requirement 4.5
  *   - Workflow templates   (`workflow-templates/`)          — Requirement 10.7
  *   - Label definitions file parse/shape                    — Requirement 13.6
  *
@@ -22,6 +22,7 @@
  * exits with a non-zero status code if ANY validator fails.
  */
 
+import { existsSync } from "fs";
 import { ValidationResult } from "./types";
 import { validateLabelsFile, DEFAULT_LABELS_PATH } from "./validate-labels";
 import {
@@ -93,11 +94,17 @@ export function validateAll(options: ValidateAllOptions = {}): ConsolidatedRepor
       target: templatesDir,
       result: validateTemplatesDir(templatesDir),
     },
-    {
-      name: "Funding configuration",
-      target: fundingPath,
-      result: validateFundingFile(fundingPath),
-    },
+    // FUNDING.yml is optional. Without it, GitHub shows no Sponsor button, so
+    // there is nothing to validate.
+    ...(existsSync(fundingPath)
+      ? [
+          {
+            name: "Funding configuration",
+            target: fundingPath,
+            result: validateFundingFile(fundingPath),
+          },
+        ]
+      : []),
     {
       name: "Workflow templates",
       target: workflowTemplatesDir,

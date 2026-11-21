@@ -17,7 +17,7 @@ This document describes how each type of configuration in this repository reache
 | Contributing guide | `CONTRIBUTING.md` | Inherited | A local `CONTRIBUTING.md` replaces it | Put project-specific build and test steps in the local file. |
 | Security policy | `SECURITY.md` | Inherited | A local `SECURITY.md` replaces it | Reporting guidance only. It does not turn on any security feature. See [Security features](#security-features). |
 | Support guide | `SUPPORT.md` | Inherited | A local `SUPPORT.md` replaces it | |
-| Funding | `FUNDING.yml` | Inherited | A local `.github/FUNDING.yml` replaces it | Shows a **Sponsor** button on every inheriting repository. |
+| Funding | None | Inherited when present | A local `.github/FUNDING.yml` replaces it | No default. A `FUNDING.yml` here would show a **Sponsor** button on every inheriting repository. Each repository can add its own. |
 | Issue forms and chooser | `.github/ISSUE_TEMPLATE/` | Inherited as **one set** | **Any** file in the local `.github/ISSUE_TEMPLATE/` replaces the **whole** set | No merge. A local `config.yml` alone also disables all inherited forms. |
 | Pull request template | `.github/pull_request_template.md` | Inherited | A local PR template replaces it | |
 | Workflow starters | `workflow-templates/` | Opt-in copy | Not applicable: the copy belongs to the target | Edits here do not update copies already adopted. |
