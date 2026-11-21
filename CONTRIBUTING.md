@@ -118,5 +118,5 @@ What to expect during review:
 ## Questions
 
 If you get stuck or need direction, see [SUPPORT.md](./SUPPORT.md) for the best
-way to reach us. For security issues, follow [SECURITY.md](./SECURITY.md)
+way to reach us. For security issues, follow [SECURITY.md](https://github.com/Cell-V/.github/blob/main/SECURITY.md)
 instead of opening a public issue.

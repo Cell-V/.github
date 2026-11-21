@@ -14,7 +14,7 @@ Please use the channel that best fits your need:
   <support@massimoselvi.com>.
 
 For security vulnerabilities, do **not** use the channels above. Follow the
-private disclosure process described in [SECURITY.md](SECURITY.md).
+private disclosure process described in [SECURITY.md](https://github.com/Cell-V/.github/blob/main/SECURITY.md).
 
 ## Expected Response Times
 
