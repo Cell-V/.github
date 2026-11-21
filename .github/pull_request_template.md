@@ -1,31 +1,31 @@
 <!--
-Thanks for contributing! Please fill out each section below so reviewers
-have the context they need. Delete any guidance comments before submitting.
+Fill in the sections below. Delete the optional sections that do not apply, and delete these comments.
+Contributing guide: https://github.com/Cell-V/.github/blob/main/CONTRIBUTING.md
+A repository can replace this template with its own .github/pull_request_template.md.
 -->
 
 ## Description
 
-<!--
-Summarize the changes in this pull request and explain the motivation behind them.
-- What does this PR change?
-- Why is this change needed (the problem it solves or the value it adds)?
-- Link any related issues, e.g. "Closes #123".
--->
+<!-- What does this pull request change, and why? Describe the problem or the value, and the approach you chose. -->
+
+## Linked issues
+
+<!-- For example: "Closes #123" or "Refs #456". Write "None" if there is no issue. -->
 
 ## Testing
 
-<!--
-Describe how you verified these changes.
-- Which tests did you run (unit, integration, manual)?
-- What were the results?
-- Provide steps a reviewer can follow to reproduce the verification.
--->
+<!-- How did you verify the change? List the commands or the manual steps, and the results. -->
 
-## Review Checklist
+## Rollout (optional)
 
-- [ ] The change is scoped to a single purpose and the description above explains it clearly.
-- [ ] I have added or updated tests that cover the changes.
-- [ ] All new and existing tests pass locally.
-- [ ] Documentation has been updated where needed (or no docs change is required).
-- [ ] The change introduces no new warnings, errors, or linting issues.
-- [ ] I have followed the project's contribution guidelines (branch naming, commit message format).
+<!-- Deployment order, migrations, feature flags, configuration changes, or the rollback plan. -->
+
+## Security (optional)
+
+<!-- Changes to authentication, permissions, secrets, input handling, or dependencies. -->
+
+## Checklist
+
+- [ ] The change has one purpose, and the description explains it.
+- [ ] Tests cover the change, or the Testing section explains why no test is necessary.
+- [ ] Documentation is updated, or no update is necessary.

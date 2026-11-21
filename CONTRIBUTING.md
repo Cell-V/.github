@@ -97,8 +97,7 @@ Before opening a pull request, make sure that:
 
 When you open the pull request:
 
-- Fill out the pull request template completely, including the description,
-  testing notes, and review checklist.
+- Fill out the pull request template: description, linked issues, testing, and checklist. Delete the optional sections that do not apply.
 - Give it a clear title that follows the Conventional Commits format and
   matches the primary change.
 - Link the issues it addresses so they close automatically on merge.
