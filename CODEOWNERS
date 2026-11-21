@@ -1,1 +1,4 @@
-*       @Cell-V/massimoselvi-dev
+# Code owners for this repository only. CODEOWNERS is not inherited.
+# Replace the user with a team (for example @Cell-V/developers) when the team
+# has members with write access to this repository.
+*       @massimoselvi
