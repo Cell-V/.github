@@ -1,7 +1,6 @@
 # Support
 
-Thanks for using our projects. This document explains where to get help
-and what response times to expect.
+Thanks for using our projects. This document explains where to get help.
 
 ## Support Channels
 
@@ -15,16 +14,6 @@ Please use the channel that best fits your need:
 
 For security vulnerabilities, do **not** use the channels above. Follow the
 private disclosure process described in [SECURITY.md](https://github.com/Cell-V/.github/blob/main/SECURITY.md).
-
-## Expected Response Times
-
-These are target response times, not guarantees. Response times may be
-longer during weekends and public holidays.
-
-| Channel | First Response |
-| --- | --- |
-| GitHub Issues | Within 5 business days |
-| Email | Within 2 business days |
 
 ## Before Reaching Out
 

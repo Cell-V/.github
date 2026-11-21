@@ -38,12 +38,7 @@ through to resolution:
 - For email reports, we reply with a ticket reference identifier you can quote in
   follow-up correspondence.
 
-We aim to meet the following response timelines:
-
-- **Initial acknowledgment:** within **48 hours** of submission.
-- **Resolution or mitigation update:** a target of **90 calendar days** from
-  submission. If a fix will take longer, we will keep you informed of progress
-  and the expected timeline.
+We review each report and keep you informed of progress until resolution.
 
 ## Scope
 
