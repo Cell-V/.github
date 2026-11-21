@@ -28,15 +28,7 @@ When reporting, please include as much of the following as you can:
 
 ## What to Expect
 
-After you submit a report through one of the channels above, you will receive a
-confirmation that your report was received successfully. The confirmation
-includes a reference identifier that both you and we can use to track the report
-through to resolution:
-
-- For GitHub Security Advisories, the advisory itself (its `GHSA` identifier and
-  URL) serves as the reference identifier.
-- For email reports, we reply with a ticket reference identifier you can quote in
-  follow-up correspondence.
+After you submit a report through one of the channels above, you will receive a confirmation that your report was received. For GitHub Security Advisories, the advisory (its `GHSA` identifier and URL) is the reference for the report.
 
 We review each report and keep you informed of progress until resolution.
 
