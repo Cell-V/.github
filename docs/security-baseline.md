@@ -12,7 +12,7 @@ Files in this repository do not turn on security features.
 - `.github/dependabot.yml` applies to **this repository only**. It is not inherited. Each repository needs its own file.
 - `CODEOWNERS` applies to **this repository only**, per branch. It is not inherited. Each repository that needs code owners must add its own file.
 - `.github/branch-protection.md` is documentation. GitHub does not read it.
-- `workflow-templates/security-scan.yml` is an opt-in starter. A repository gets it only when a maintainer adopts it.
+- `workflow-templates/security-scan.yml` is an opt-in starter. A repository gets it only when a maintainer adopts it. Its audit job runs `pnpm audit`, so the repository needs `packageManager` in `package.json` and a committed `pnpm-lock.yaml`.
 
 Security features need organization or repository settings, a security configuration, or API automation.
 

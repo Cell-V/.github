@@ -4,6 +4,10 @@
 # dependency review on pull requests, static analysis with CodeQL code
 # scanning, and a dependency vulnerability audit on a weekly schedule.
 #
+# The audit job needs pnpm: package.json declares pnpm in "packageManager",
+# and pnpm-lock.yaml is committed. pnpm audit reads the lockfile, so no
+# install step is necessary.
+#
 # Secret values (if any are added) must be referenced exclusively via the
 # ${{ secrets.* }} syntax. Never hardcode tokens, passwords, or keys here.
 name: Security Scan
@@ -76,12 +80,17 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: lts/*
+          node-version: 24
 
       - name: Audit dependencies
-        run: npm audit --audit-level=high
+        run: pnpm audit --audit-level high
