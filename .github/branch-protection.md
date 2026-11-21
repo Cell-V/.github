@@ -1,116 +1,70 @@
-# Branch Protection Rules
+# Default branch protection
 
-This document describes the required branch protection rules for the default
-branch of this `.github` repository. Because changes here define
-organization-wide defaults, every change must be reviewed before it reaches the
-default branch.
+This document describes the protection of the default branch of this `.github` repository. Changes here define organization-wide defaults, so every change goes through a pull request.
 
-> **Note:** This file is documentation only. GitHub does **not** read branch
-> protection rules from a file in the repository. The rules below must be
-> configured through the GitHub UI, the REST API, or the `gh` CLI (see
-> [Configuring the rules](#configuring-the-rules)). Keep this document in sync
-> with the actual configuration.
+> GitHub does not read this document or the ruleset file. The ruleset is a repository setting. The file `.github/rulesets/main-protection.json` is the version-controlled copy. When you change the setting, update the file in the same pull request.
 
-## Required rules
+## Ruleset
 
-The following rules apply to the default branch (typically `main`):
+The repository ruleset `main protection` applies to the default branch (`~DEFAULT_BRANCH`). The source is [`.github/rulesets/main-protection.json`](rulesets/main-protection.json).
 
-- **Require a pull request before merging.** Direct pushes to the default branch
-  are disabled. All changes must go through a pull request.
-- **Require at least 1 approving review.** A pull request must receive at least
-  one approving review before it can be merged.
-- **Dismiss stale approvals on new commits.** When new commits are pushed to a
-  pull request, previous approvals are dismissed so the latest changes are
-  reviewed.
-- **Require conversation resolution before merging.** All review comments must be
-  resolved before the pull request can be merged.
-- **Apply rules to administrators.** The protections apply to everyone,
-  including users with administrative permissions, so the default branch cannot
-  be bypassed.
+| Rule | Setting |
+| --- | --- |
+| Require a pull request before merging | On. Direct pushes to the default branch are rejected. |
+| Required approvals | 1 |
+| Dismiss stale approvals when new commits are pushed | On |
+| Require conversation resolution before merging | On |
+| Required status check | `Type-check, test, and validate` (GitHub Actions, from `.github/workflows/ci.yml`) |
+| Block force pushes | On |
+| Block deletion of the branch | On |
+| Bypass | Repository role **Admin**, only through a pull request |
 
-### Expected behavior
+### Why admins can bypass
 
-- A direct push to the protected default branch is rejected. Contributors must
-  open a pull request instead.
-- A pull request cannot be merged until it has at least 1 approving review and
-  all required conditions are satisfied.
+The organization has one member, who is also the only admin. GitHub does not let an author approve their own pull request. Without a bypass, no pull request could be merged.
 
-## Configuring the rules
+The bypass mode is `pull_request`. An admin can merge a pull request without an approval, but cannot push directly to the default branch. The required status check still runs on the pull request, and the admin must explicitly choose to bypass.
 
-Branch protection is enforced by GitHub, not by this repository. Configure it
-using one of the methods below.
+Remove the bypass when a second maintainer with write access joins. Then also set `require_code_owner_review` to `true` if `CODEOWNERS` names a team.
 
-### GitHub UI
+### Plan
 
-1. Open the repository on GitHub and go to **Settings → Branches**.
-2. Under **Branch protection rules**, select **Add branch ruleset** (or **Add
-   rule** for classic branch protection).
-3. Set the branch name pattern to the default branch (for example, `main`).
-4. Enable the following options:
-   - **Require a pull request before merging** and set **Required approvals** to
-     at least `1`.
-   - **Dismiss stale pull request approvals when new commits are pushed.**
-   - **Require conversation resolution before merging.**
-   - **Do not allow bypassing the above settings** (apply to administrators).
-5. Save the rule.
+Rulesets for this repository work on GitHub Free because the repository is public. On GitHub Free, private repositories cannot use rulesets or branch protection. See [docs/security-baseline.md](../docs/security-baseline.md).
 
-### GitHub CLI (`gh`)
+## Apply or update the ruleset
 
-Replace `OWNER/REPO` with the organization and repository name and `main` with
-the default branch if it differs.
+Create the ruleset (first time):
 
 ```sh
-gh api \
-  --method PUT \
-  -H "Accept: application/vnd.github+json" \
-  /repos/OWNER/REPO/branches/main/protection \
-  -f 'required_pull_request_reviews[required_approving_review_count]=1' \
-  -F 'required_pull_request_reviews[dismiss_stale_reviews]=true' \
-  -F 'enforce_admins=true' \
-  -F 'required_conversation_resolution=true' \
-  -F 'required_status_checks=null' \
-  -F 'restrictions=null'
+gh api --method POST repos/Cell-V/.github/rulesets --input .github/rulesets/main-protection.json
 ```
 
-### REST API
-
-The equivalent REST API call targets the branch protection endpoint:
-
-```http
-PUT /repos/{owner}/{repo}/branches/{branch}/protection
-```
-
-```json
-{
-  "required_pull_request_reviews": {
-    "required_approving_review_count": 1,
-    "dismiss_stale_reviews": true
-  },
-  "required_conversation_resolution": true,
-  "enforce_admins": true,
-  "required_status_checks": null,
-  "restrictions": null
-}
-```
-
-See GitHub's documentation on
-[protected branches](https://docs.github.com/en/rest/branches/branch-protection)
-and
-[managing a branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule)
-for the full set of available options.
-
-## Verifying the configuration
-
-To confirm the rules are active, fetch the current protection settings:
+Update the ruleset (find the ID with the list command below):
 
 ```sh
-gh api /repos/OWNER/REPO/branches/main/protection
+gh api --method PUT repos/Cell-V/.github/rulesets/<ruleset-id> --input .github/rulesets/main-protection.json
 ```
 
-Confirm that:
+The token needs admin access to the repository. In the UI, go to **Settings → Rules → Rulesets**. The UI can also import the JSON file.
 
-- `required_pull_request_reviews.required_approving_review_count` is at least
-  `1`.
-- `enforce_admins.enabled` is `true`.
-- A direct push to the default branch is rejected (it must go through a pull
-  request).
+The status check name must match the job `name` in `ci.yml`. If you rename the job, update the ruleset in the same pull request, or merges are blocked.
+
+## Verify
+
+```sh
+gh api repos/Cell-V/.github/rulesets --jq '.[] | {id, name, enforcement}'
+gh api repos/Cell-V/.github/rules/branches/main --jq '[.[].type]'
+```
+
+Expected rule types: `deletion`, `non_fast_forward`, `pull_request`, `required_status_checks`.
+
+Expected behavior:
+
+- `git push origin main` is rejected.
+- A pull request shows the required check, and needs 1 approval or an admin bypass to merge.
+
+## References
+
+- [About rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets)
+- [Available rules for rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets)
+- [REST API endpoints for rules](https://docs.github.com/en/rest/repos/rules)
