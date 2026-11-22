@@ -16,6 +16,8 @@ Files in this repository do not turn on security features.
 
 Security features need organization or repository settings, a security configuration, or API automation.
 
+A new repository does not inherit the settings of this repository. On 2026-11-22, a new public test repository did not receive the security configuration that this repository uses. Apply the configuration to each new repository, or set it as the default for new repositories in the organization's security configuration settings.
+
 ## Plan and availability
 
 The organization uses **GitHub Free** (checked on 2026-11-21 with `gh api orgs/Cell-V --jq .plan.name`). Check the plan again before you change this baseline. Availability depends on the plan and on repository visibility.

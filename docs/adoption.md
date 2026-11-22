@@ -18,7 +18,7 @@ This document describes how each type of configuration in this repository reache
 | Security policy | `SECURITY.md` | Inherited | A local `SECURITY.md` replaces it | Reporting guidance only. It does not turn on any security feature. See [Security features](#security-features). |
 | Support guide | `SUPPORT.md` | Inherited | A local `SUPPORT.md` replaces it | |
 | Funding | None | Inherited when present | A local `.github/FUNDING.yml` replaces it | No default. A `FUNDING.yml` here would show a **Sponsor** button on every inheriting repository. Each repository can add its own. |
-| Issue forms and chooser | `.github/ISSUE_TEMPLATE/` | Inherited as **one set** | **Any** file in the local `.github/ISSUE_TEMPLATE/` replaces the **whole** set | No merge. A local `config.yml` alone also disables all inherited forms. |
+| Issue forms and chooser | `.github/ISSUE_TEMPLATE/` | Inherited as **one set** | **Any** file in the local `.github/ISSUE_TEMPLATE/` replaces the **whole** set | No merge. A local `config.yml` alone also disables all inherited forms. A local form alone also disables the inherited `config.yml`: the contact links disappear and blank issues are allowed again. The GraphQL `issueTemplates` field and the community profile do not report YAML issue forms. Check the chooser in a browser. |
 | Pull request template | `.github/pull_request_template.md` | Inherited | A local PR template replaces it | |
 | Workflow starters | `workflow-templates/` | Opt-in copy | Not applicable: the copy belongs to the target | Edits here do not update copies already adopted. |
 | Reusable workflows | None yet | Reference (`uses: Cell-V/.github/.github/workflows/<file>.yml@<ref>`) | Caller chooses the ref | Public callers can only call reusable workflows in public repositories. |
@@ -46,7 +46,7 @@ These rules apply to every inherited file in the matrix.
 2. Find the starter in the section for the organization.
 3. Select **Configure**. Check the file and commit it.
 
-GitHub replaces `$default-branch` with the default branch of the target repository. After adoption, the workflow is a normal file in the target repository. Later changes to the starter here do not reach it.
+GitHub replaces every `$default-branch` token with the default branch of the target repository, also inside comments. After adoption, the workflow is a normal file in the target repository. Later changes to the starter here do not reach it.
 
 ### TypeScript CI starter
 
