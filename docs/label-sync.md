@@ -7,7 +7,7 @@ Label sync applies the canonical catalog in `.github/labels.yml` to an explicit 
 - **Dry-run is the default.** The script writes only with `--apply`. In the workflow, the `apply` input must be checked.
 - **Explicit targets only.** You must name each target repository. The script never lists or syncs all repositories of the organization. One run accepts at most 50 targets.
 - **No deletion.** The script never deletes a label. Labels that the catalog does not manage stay on the repository. The report lists them as `extra (preserved)`.
-- **Bounded writes.** Writes are serialized, with a 1-second pause between writes. A run stops at the write budget (default 400). The script retries rate-limit responses and honors `retry-after`.
+- **Bounded writes.** Writes are serialized, with a 1-second pause between writes. A run stops before the first repository that does not fit in the write budget (default 400). The first repository always runs, so every run makes progress, even if its writes exceed a very small budget. The script retries rate-limit responses and honors `retry-after`.
 - **Idempotent.** A second run with no catalog change makes no writes. A run that stopped at the budget continues when you run it again.
 
 ## What the sync changes
