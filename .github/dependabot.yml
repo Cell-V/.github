@@ -45,6 +45,12 @@ updates:
         update-types:
           - minor
           - patch
+    # @types/node must match the Node.js major version that the workflows use
+    # (node-version: 24). Update it by hand when the runtime changes.
+    ignore:
+      - dependency-name: "@types/node"
+        update-types:
+          - version-update:semver-major
 
   - package-ecosystem: github-actions
     directory: /
