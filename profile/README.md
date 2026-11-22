@@ -5,33 +5,17 @@
 
 ## About
 
-We are a small team building thoughtful software — tools, libraries, and products
-designed to be clear, dependable, and pleasant to use. Our work spans developer
-tooling and web applications, shared openly so others can learn from and build on it.
+Cell-V is an engineering leadership and cloud architecture practice. We work as fractional leaders inside client teams: we set up delivery governance, recover projects that are off track, and design workloads on AWS. We also give technical advice to company owners and coach engineers and managers.
 
-## Mission
+## Explore
 
-Our mission is to craft software that respects the people who use it and the people
-who maintain it. We value clarity over cleverness, strong defaults, and well-documented
-code that stays easy to contribute to over time.
-
-## Explore Our Work
-
-- [Browse our repositories](https://github.com/orgs/Cell-V/repositories) — see everything we're building in the open.
-- [`.github`](https://github.com/Cell-V/.github) — the central hub for our organization-wide standards, templates, and policies.
-
-## Get Involved
-
-We welcome contributions of all kinds. Here's where to start:
-
-- [Contributing guide](https://github.com/Cell-V/.github/blob/main/CONTRIBUTING.md) — branch naming, commit conventions, and pull request workflow.
-- [Good first issues](https://github.com/search?q=org%3ACell-V+is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22&type=issues) — a friendly place to make your first contribution.
+- [`.github`](https://github.com/Cell-V/.github): the organization configuration hub. It holds the default community files, issue and pull request templates, workflow starters, the label catalog with a guarded sync tool, and the security baseline.
+- [All repositories](https://github.com/orgs/Cell-V/repositories).
 
 ## Community Standards
 
-Everything we do is governed by our shared standards:
-
 - [Code of Conduct](https://github.com/Cell-V/.github/blob/main/CODE_OF_CONDUCT.md)
+- [Contributing guide](https://github.com/Cell-V/.github/blob/main/CONTRIBUTING.md)
 - [Security Policy](https://github.com/Cell-V/.github/blob/main/SECURITY.md)
 - [Support](https://github.com/Cell-V/.github/blob/main/SUPPORT.md)
 
