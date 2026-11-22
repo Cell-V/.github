@@ -40,7 +40,7 @@ Recommended: a GitHub App.
 1. Create a GitHub App owned by the organization with the permissions above. Turn off webhooks.
 2. Install the App only on the repositories that label sync may change.
 3. In this repository, open **Settings → Environments** and create the environment `label-sync`.
-4. In that environment, add the variable `LABEL_SYNC_APP_ID` (the App ID) and the secret `LABEL_SYNC_APP_PRIVATE_KEY` (the App private key).
+4. In that environment, add the variable `LABEL_SYNC_APP_CLIENT_ID` (the App client ID, on the App settings page) and the secret `LABEL_SYNC_APP_PRIVATE_KEY` (the App private key).
 5. Optional: add required reviewers to the environment. Then each run waits for an approval.
 
 The workflow creates a short-lived installation token, scoped to the target repositories only. Never commit a token or a private key.
