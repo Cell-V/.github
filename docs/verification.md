@@ -10,7 +10,7 @@ This document records how the defaults in this repository were verified in a rea
 | --- | --- |
 | Hub commit for the checks | `da8b9d0` (main) |
 | Hub commit for the propagation check | `e152ee6` (main, after PR #9) |
-| Hub commit for the Actions label sync | `464e71e` (main, after PR #12) |
+| Hub commit for the Actions label sync | `464e71e` (main, after PR #12) for the dry run, `63f70a0` (main, after PR #14) for the apply run |
 | Test repository | [`Cell-V/defaults-sandbox`](https://github.com/Cell-V/defaults-sandbox), public, created on 2026-11-22 for this verification only |
 | Authorization | The organization owner authorized the test repository, direct commits to it, and a label sync with `--apply` on it only. No other repository was changed. |
 | Methods | GitHub REST and GraphQL API with `gh`, the GitHub web UI in a signed-in browser, and the scripts in this repository |
@@ -38,6 +38,7 @@ This document records how the defaults in this repository were verified in a rea
 | V17 | Starter icons render | **Actions → New workflow** | Before PR #9: broken image for both starters. After PR #9: rocket and shield icons. | Pass after fix |
 | V18 | Security settings of a new repository | Compared the settings of the test repository with this repository | A new repository does not receive the security configuration of this repository. Details are recorded privately. | As documented. Fixed for new public repositories, see F1 and F7 |
 | V19 | Label sync on GitHub Actions (dry run) | [Run 45042493795](https://github.com/Cell-V/.github/actions/runs/45042493795) of `label-sync.yml` with `repositories=defaults-sandbox` and `apply` off, after the GitHub App and the `label-sync` environment were set up | The App token was created for the target repository only and was revoked after the job. 0 writes planned: 0 creates, 0 updates, 0 renames, 0 conflicts, 0 errors. Extra labels `docs` and `sandbox-extra` listed as preserved. The JSON report artifact matches the log. No write. | Pass |
+| V20 | Label sync on GitHub Actions (apply) with an approval | [Run 45043603259](https://github.com/Cell-V/.github/actions/runs/45043603259) of `label-sync.yml` with `repositories=defaults-sandbox` and `apply` on | The run waited for the required reviewer of the `label-sync` environment and started after the approval. 0 writes applied: 0 creates, 0 updates, 0 renames, 0 conflicts, 0 errors. Extra labels `docs` and `sandbox-extra` were kept. The test repository still has 24 labels. | Pass |
 
 ### Findings and remediation
 
@@ -53,7 +54,7 @@ This document records how the defaults in this repository were verified in a rea
 
 ### Not verified
 
-- `label-sync.yml` on GitHub Actions with `apply` on. V19 verified a dry run only. Since 2026-11-22, the `label-sync` environment has a required reviewer, so each run waits for an approval. A run through that approval was not verified.
+- `label-sync.yml` on GitHub Actions with `apply` on and planned writes. V20 applied 0 writes, because the test repository already matched the catalog.
 - A public repository created after the F1 fix. The default configuration was verified through the API only. The test repository got the configuration by a manual attach.
 - Adoption and a run of the `security-scan` starter.
 - Workflow linting with `actionlint`.
