@@ -53,7 +53,7 @@ This document records how the defaults in this repository were verified in a rea
 
 ### Not verified
 
-- `label-sync.yml` on GitHub Actions with `apply` on. V19 verified a dry run only. The `label-sync` environment has no required reviewers yet.
+- `label-sync.yml` on GitHub Actions with `apply` on. V19 verified a dry run only. Since 2026-11-22, the `label-sync` environment has a required reviewer, so each run waits for an approval. A run through that approval was not verified.
 - A public repository created after the F1 fix. The default configuration was verified through the API only. The test repository got the configuration by a manual attach.
 - Adoption and a run of the `security-scan` starter.
 - Workflow linting with `actionlint`.
