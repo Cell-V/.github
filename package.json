@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Validation and sync scripts for the organization .github repository",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "type": "commonjs",
   "scripts": {
     "typecheck": "tsc --noEmit",
