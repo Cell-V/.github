@@ -8,8 +8,8 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build": "tsc",
-    "validate": "ts-node scripts/validate-all.ts",
-    "test": "node --require ts-node/register --test scripts/__tests__/*.test.ts"
+    "validate": "tsx scripts/validate-all.ts",
+    "test": "node --import tsx --test scripts/__tests__/*.test.ts"
   },
   "dependencies": {
     "@octokit/rest": "22.0.1",
@@ -19,7 +19,7 @@
     "@types/js-yaml": "4.0.9",
     "@types/node": "24.19.2",
     "fast-check": "4.10.2",
-    "ts-node": "10.9.2",
+    "tsx": "4.23.15",
     "typescript": "7.0.2"
   }
 }

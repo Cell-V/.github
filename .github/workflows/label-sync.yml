@@ -87,7 +87,7 @@ jobs:
           if [ "$APPLY" = "true" ]; then
             args+=(--apply)
           fi
-          npx ts-node scripts/sync-labels.ts "${args[@]}"
+          npx tsx scripts/sync-labels.ts "${args[@]}"
 
       - name: Upload JSON report
         if: always()

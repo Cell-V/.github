@@ -59,8 +59,8 @@ Use a fine-grained personal access token with the permissions above, limited to 
 
 ```sh
 export GITHUB_TOKEN=...            # never commit this value
-npx ts-node scripts/sync-labels.ts --repos Cell-V/api,Cell-V/web                  # dry run
-npx ts-node scripts/sync-labels.ts --repos Cell-V/api,Cell-V/web --apply          # write
+npx tsx scripts/sync-labels.ts --repos Cell-V/api,Cell-V/web                  # dry run
+npx tsx scripts/sync-labels.ts --repos Cell-V/api,Cell-V/web --apply          # write
 ```
 
 | Option | Meaning |

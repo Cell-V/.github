@@ -32,7 +32,7 @@
  * {@link validateTemplatesDir} (reading an entire ISSUE_TEMPLATE directory from
  * disk), and the shared {@link formatResult} helper so that it can be reused by
  * `scripts/validate-all.ts` and exercised by the property test. When executed
- * directly via ts-node it validates `.github/ISSUE_TEMPLATE/` and exits with a
+ * directly via tsx it validates `.github/ISSUE_TEMPLATE/` and exits with a
  * non-zero status code if validation fails.
  */
 
@@ -567,7 +567,7 @@ export function formatResult(result: ValidationResult, label: string): string {
   return lines.join("\n");
 }
 
-// When run directly (ts-node scripts/validate-templates.ts [dir]), validate the
+// When run directly (tsx scripts/validate-templates.ts [dir]), validate the
 // issue template directory and exit with a non-zero status on failure.
 if (require.main === module) {
   const target = process.argv[2] ?? DEFAULT_TEMPLATE_DIR;
