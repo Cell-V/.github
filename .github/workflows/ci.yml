@@ -55,7 +55,7 @@ jobs:
         run: npm test
 
       - name: Run unified validation
-        # "npm run validate" executes ts-node scripts/validate-all.ts, which
+        # "npm run validate" executes tsx scripts/validate-all.ts, which
         # exits non-zero on any validation error, failing the job and blocking
         # the merge via the required status check (Requirements 6.5, 15.1).
         run: npm run validate

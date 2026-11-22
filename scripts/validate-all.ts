@@ -18,7 +18,7 @@
  *
  * The module exports {@link validateAll} (returning the structured results) and
  * {@link formatConsolidatedReport} so it can be reused and tested. When executed
- * directly via ts-node it validates the repository's configuration files and
+ * directly via tsx it validates the repository's configuration files and
  * exits with a non-zero status code if ANY validator fails.
  */
 
@@ -173,7 +173,7 @@ export function formatConsolidatedReport(report: ConsolidatedReport): string {
   return lines.join("\n");
 }
 
-// When run directly (ts-node scripts/validate-all.ts), validate every
+// When run directly (tsx scripts/validate-all.ts), validate every
 // configuration file and exit with a non-zero status if ANY validator fails.
 if (require.main === module) {
   const report = validateAll();

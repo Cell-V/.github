@@ -22,7 +22,7 @@
  * The module exports {@link validateLabels} (operating on raw YAML text) and
  * {@link validateLabelsFile} (reading from disk) so that it can be reused by
  * `scripts/validate-all.ts` and exercised by the property test. When executed
- * directly via ts-node it validates `.github/labels.yml` and exits with a
+ * directly via tsx it validates `.github/labels.yml` and exits with a
  * non-zero status code if validation fails.
  */
 
@@ -341,7 +341,7 @@ export function formatResult(result: ValidationResult, label: string): string {
   return lines.join("\n");
 }
 
-// When run directly (ts-node scripts/validate-labels.ts [path]), validate the
+// When run directly (tsx scripts/validate-labels.ts [path]), validate the
 // labels file and exit with a non-zero status on failure.
 if (require.main === module) {
   const target = process.argv[2] ?? DEFAULT_LABELS_PATH;

@@ -24,7 +24,7 @@
  * The module exports {@link validateFunding} (operating on raw YAML text) and
  * {@link validateFundingFile} (reading from disk) so that it can be reused by
  * `scripts/validate-all.ts` and exercised by the property test. When executed
- * directly via ts-node it validates `FUNDING.yml` and exits with a non-zero
+ * directly via tsx it validates `FUNDING.yml` and exits with a non-zero
  * status code if validation fails.
  */
 
@@ -330,7 +330,7 @@ export function formatResult(result: ValidationResult, label: string): string {
   return lines.join("\n");
 }
 
-// When run directly (ts-node scripts/validate-funding.ts [path]), validate the
+// When run directly (tsx scripts/validate-funding.ts [path]), validate the
 // funding file and exit with a non-zero status on failure.
 if (require.main === module) {
   const target = process.argv[2] ?? DEFAULT_FUNDING_PATH;

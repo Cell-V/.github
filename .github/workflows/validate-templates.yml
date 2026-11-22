@@ -46,4 +46,4 @@ jobs:
       - name: Validate issue templates and chooser configuration
         # Exits non-zero on any validation error, failing the job and blocking
         # the merge via the required status check (Requirement 6.5).
-        run: npx ts-node scripts/validate-templates.ts
+        run: npx tsx scripts/validate-templates.ts

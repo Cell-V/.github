@@ -30,7 +30,7 @@
  * workflow + properties pair in memory) and {@link validateWorkflowsDir}
  * (scanning a directory on disk) so it can be reused by
  * `scripts/validate-all.ts` and exercised by the property tests. When executed
- * directly via ts-node it validates the `workflow-templates/` directory and
+ * directly via tsx it validates the `workflow-templates/` directory and
  * exits with a non-zero status code if validation fails.
  */
 
@@ -426,7 +426,7 @@ export function formatResult(result: ValidationResult, label: string): string {
   return lines.join("\n");
 }
 
-// When run directly (ts-node scripts/validate-workflows.ts [dir]), validate the
+// When run directly (tsx scripts/validate-workflows.ts [dir]), validate the
 // workflow templates directory and exit with a non-zero status on failure.
 if (require.main === module) {
   const target = process.argv[2] ?? DEFAULT_WORKFLOW_TEMPLATES_DIR;
