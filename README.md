@@ -45,6 +45,8 @@ Label sync needs credentials and explicit targets. It is a dry run unless you pa
 
 Security controls come mostly from settings, not files. See [docs/security-baseline.md](docs/security-baseline.md).
 
+The defaults were verified in a test repository. See [docs/verification.md](docs/verification.md) for the checks, the results, and how to repeat them.
+
 ## Change process
 
 1. Read [CONTRIBUTING.md](CONTRIBUTING.md).
