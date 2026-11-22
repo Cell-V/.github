@@ -1,8 +1,8 @@
 name: TypeScript CI
 
 # Organization CI starter for TypeScript projects that use pnpm.
-# Adopt it from the Actions tab. GitHub replaces $default-branch with the
-# default branch of your repository.
+# Adopt it from the Actions tab. At adoption, GitHub sets the branch filters
+# below to the default branch of your repository.
 #
 # Prerequisites in the adopting repository:
 #   - package.json declares pnpm in "packageManager" (for example

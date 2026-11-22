@@ -1,7 +1,7 @@
 {
   "name": "security-scan",
   "description": "Dependency review, CodeQL code scanning, and vulnerability audit for organization repositories.",
-  "iconName": "shield-check",
+  "iconName": "octicon shield-check",
   "categories": ["Security", "Code scanning"],
   "filePatterns": ["package.json$", "pnpm-lock\\.yaml$", ".*\\.ya?ml$"]
 }
