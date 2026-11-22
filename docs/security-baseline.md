@@ -16,7 +16,7 @@ Files in this repository do not turn on security features.
 
 Security features need organization or repository settings, a security configuration, or API automation.
 
-A new repository does not inherit the settings of this repository. On 2026-11-22, a new public test repository did not receive the security configuration that this repository uses. Since 2026-11-22, "GitHub recommended" is the default configuration for new public repositories. A new private repository gets no configuration: apply one by hand. "GitHub recommended" does not turn on Dependabot security updates. Turn them on in each repository, or use a custom configuration.
+A new repository does not inherit the settings of this repository. On 2026-11-22, a new public test repository did not receive the security configuration that this repository uses. Since 2026-11-22, the custom configuration "Cell-V baseline" is the default for new public repositories. It is "GitHub recommended" plus Dependabot security updates, which "GitHub recommended" does not turn on. A new private repository gets no configuration: apply one by hand. An existing repository keeps its current configuration until an admin attaches another one.
 
 ## Plan and availability
 
