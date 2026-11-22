@@ -241,6 +241,24 @@ export function validateWorkflowsDir(
     );
   }
 
+  // iconName must name an Octicon ("octicon <name>") or an SVG file in this
+  // directory, referenced without the .svg extension. Otherwise GitHub shows
+  // a broken image in Actions > New workflow.
+  for (const propFile of matchedProperties) {
+    const iconName = readIconName(path.join(dir, propFile));
+    if (iconName === undefined) {
+      continue; // Missing or invalid iconName is reported by validateProperties.
+    }
+    const isOcticon = /^octicon [a-z0-9-]+$/.test(iconName);
+    if (!isOcticon && !entries.includes(`${iconName}.svg`)) {
+      result.errors.push(
+        `${path.join(dir, propFile)}: iconName "${iconName}" is not an Octicon ` +
+          `("octicon <name>") and ${iconName}.svg does not exist in ${dir}.`,
+      );
+      result.valid = false;
+    }
+  }
+
   // Report orphaned properties files that never matched a workflow template.
   for (const propFile of propertiesFiles) {
     if (matchedProperties.has(propFile)) {
@@ -255,6 +273,19 @@ export function validateWorkflowsDir(
   }
 
   return result;
+}
+
+/** Read iconName from a properties file, or undefined if it is not usable. */
+function readIconName(filePath: string): string | undefined {
+  try {
+    const parsed: unknown = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    if (isRecord(parsed) && isNonEmptyString(parsed.iconName)) {
+      return (parsed.iconName as string).trim();
+    }
+  } catch {
+    // Parse errors are reported by validateProperties.
+  }
+  return undefined;
 }
 
 /**
