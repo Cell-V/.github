@@ -1,0 +1,14 @@
+{
+  "name": "typescript-ci",
+  "description": "Organization CI for TypeScript projects that use pnpm: frozen-lockfile install, then type-check, lint, test, and build on pushes and pull requests.",
+  "iconName": "rocket",
+  "categories": [
+    "Continuous integration",
+    "TypeScript",
+    "JavaScript"
+  ],
+  "filePatterns": [
+    "pnpm-lock\\.yaml$",
+    "tsconfig.*\\.json$"
+  ]
+}

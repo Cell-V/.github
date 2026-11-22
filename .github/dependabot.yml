@@ -1,0 +1,69 @@
+# Dependabot version updates for THIS repository (Cell-V/.github) only.
+#
+# This file is not inherited. Each organization repository needs its own
+# .github/dependabot.yml. See docs/security-baseline.md.
+#
+# Inventory:
+#   - npm: package.json and package-lock.json at the repository root.
+#   - GitHub Actions: workflows in .github/workflows/.
+# Dependabot does not update the starters in workflow-templates/. Update their
+# action versions by hand when you update .github/workflows/.
+#
+# Security updates are turned on in repository settings, not here. The
+# cooldown and groups below apply to version updates only.
+
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Rome
+    # Wait before proposing a new release, to reduce exposure to compromised
+    # packages. Does not apply to security updates.
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      npm-development:
+        applies-to: version-updates
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+      npm-production:
+        applies-to: version-updates
+        dependency-type: production
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Rome
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - ci
+    commit-message:
+      prefix: ci
+      include: scope
+    groups:
+      github-actions:
+        applies-to: version-updates
+        patterns:
+          - "*"

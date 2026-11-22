@@ -1,0 +1,99 @@
+name: Label Sync
+
+# Manually triggered, bounded label synchronization.
+#
+# - Runs only on workflow_dispatch. There is no schedule.
+# - Targets only the repositories named in the "repositories" input.
+# - Dry-run by default. Writes only when "apply" is true.
+# - Never deletes labels. Unmanaged labels are reported as "extra".
+#
+# Credentials: a GitHub App installation token, created at run time and
+# scoped to the target repositories only. The default GITHUB_TOKEN is scoped
+# to this repository and is not used for the sync. See docs/label-sync.md.
+
+on:
+  workflow_dispatch:
+    inputs:
+      repositories:
+        description: "Target repository names in this organization, separated by commas (for example: api,web). Names only, no owner."
+        required: true
+        type: string
+      apply:
+        description: "Write changes. Leave unchecked for a dry run."
+        required: false
+        type: boolean
+        default: false
+      max-writes:
+        description: "Write budget for this run (GitHub allows about 500 writes per hour)."
+        required: false
+        type: number
+        default: 400
+
+# The default GITHUB_TOKEN only reads this repository.
+permissions:
+  contents: read
+
+# Never run two syncs at the same time. Do not cancel a running sync.
+concurrency:
+  group: label-sync
+  cancel-in-progress: false
+
+jobs:
+  sync-labels:
+    name: Sync labels (${{ inputs.apply && 'apply' || 'dry-run' }})
+    runs-on: ubuntu-latest
+    # The environment holds the App secrets. Add required reviewers to it to
+    # gate every run behind an approval.
+    environment: label-sync
+    timeout-minutes: 90
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create GitHub App token for the target repositories
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.LABEL_SYNC_APP_CLIENT_ID }}
+          private-key: ${{ secrets.LABEL_SYNC_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ inputs.repositories }}
+          # Narrow the token to the label permissions, whatever the App has.
+          permission-issues: write
+          permission-metadata: read
+
+      - name: Sync labels
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          LABEL_SYNC_OWNER: ${{ github.repository_owner }}
+          # Inputs pass through environment variables, never through
+          # expression interpolation in the shell script.
+          LABEL_SYNC_REPOS: ${{ inputs.repositories }}
+          APPLY: ${{ inputs.apply }}
+          MAX_WRITES: ${{ inputs.max-writes }}
+        run: |
+          args=(--max-writes "$MAX_WRITES" --json label-sync-report.json)
+          if [ "$APPLY" = "true" ]; then
+            args+=(--apply)
+          fi
+          npx ts-node scripts/sync-labels.ts "${args[@]}"
+
+      - name: Upload JSON report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: label-sync-report
+          path: label-sync-report.json
+          if-no-files-found: ignore
+          retention-days: 30

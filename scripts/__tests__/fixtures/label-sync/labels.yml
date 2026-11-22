@@ -1,0 +1,19 @@
+# Example label catalog for the label sync fixtures. Not the real catalog.
+- name: bug
+  color: "d73a4a"
+  description: Something isn't working as expected
+  aliases:
+    - defect
+- name: enhancement
+  color: "a2eeef"
+  description: An improvement to existing functionality
+  aliases:
+    - feature
+- name: documentation
+  color: "0075ca"
+  description: Improvements or additions to documentation
+  aliases:
+    - docs
+- name: triage
+  color: "ededed"
+  description: Needs initial review and categorization
