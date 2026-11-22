@@ -35,22 +35,24 @@ This document records how the defaults in this repository were verified in a rea
 | V15 | Adopted starter runs | **Configure** showed the generated file. The same content was committed as `8051a33`. | The first run passed: Node.js 24, pnpm from `packageManager`, `pnpm install --frozen-lockfile`, type-check, and test. Lint and build were skipped because the scripts do not exist. No annotations. | Pass |
 | V16 | Later starter edits do not reach an adopted copy | PR #9 changed `typescript-ci.yml` (merged as `e152ee6`). Compared the adopted file afterwards. | The adopted file is unchanged: same SHA-256 (`357536dc…916b`), the old comment, and no commit after `8051a33`. | Pass |
 | V17 | Starter icons render | **Actions → New workflow** | Before PR #9: broken image for both starters. After PR #9: rocket and shield icons. | Pass after fix |
-| V18 | Security settings of a new repository | Compared the settings of the test repository with this repository | A new repository does not receive the security configuration of this repository. Details are recorded privately. | As documented. Action needed, see F1 |
+| V18 | Security settings of a new repository | Compared the settings of the test repository with this repository | A new repository does not receive the security configuration of this repository. Details are recorded privately. | As documented. Fixed for new public repositories, see F1 and F7 |
 
 ### Findings and remediation
 
 | ID | Finding | Remediation | Status |
 | --- | --- | --- | --- |
-| F1 | A new repository does not inherit the security settings of this repository. | Apply the security configuration to each new repository, or set it as the default for new repositories. See [security-baseline.md](security-baseline.md#files-versus-features). | Open: needs an organization admin decision |
+| F1 | A new repository does not inherit the security settings of this repository. | The organization admin set "GitHub recommended" as the default configuration for new public repositories, and set the default `GITHUB_TOKEN` permissions to read with pull request approval off. The configuration was attached to the test repository. Its settings then matched this repository, except F7. See [security-baseline.md](security-baseline.md#files-versus-features). | Fixed on 2026-11-22 for new public repositories. Existing repositories were not changed. |
 | F2 | `iconName` values `rocket` and `shield-check` were not valid, so both starters showed a broken image. | Use `octicon rocket` and `octicon shield-check`. The workflow validator now rejects an invalid `iconName`. | Fixed in PR #9 |
 | F3 | GitHub replaces `$default-branch` also inside comments. The adopted comment read `GitHub replaces "main" with the default branch`. | Remove the token from the starter comment. | Fixed in PR #9 |
 | F4 | The `config.yml` contact link "Report a Security Vulnerability" duplicated the chooser entry that GitHub adds for a security policy, and it pointed to this repository instead of the affected repository. | Remove the contact link. | Fixed in this change |
 | F5 | GraphQL `issueTemplates` and the community profile `issue_template` do not report YAML issue forms. They return empty or `null`, also in this repository. | Check issue forms in the chooser in a browser. Noted in [adoption.md](adoption.md). | Documented |
 | F6 | The description of PR #1 said that the catalog has 23 labels. It has 22. | None. This document records the correct count. | Documented |
+| F7 | "GitHub recommended" does not turn on Dependabot security updates (`not_set`). A repository that gets only this configuration has no security updates. | Turn on Dependabot security updates in each repository, or use a custom configuration that turns them on. | Open: needs an organization admin decision |
 
 ### Not verified
 
 - `label-sync.yml` on GitHub Actions. It needs the GitHub App and the `label-sync` environment, which do not exist yet. The script was verified locally (V10 to V12) with a user token.
+- A public repository created after the F1 fix. The default configuration was verified through the API only. The test repository got the configuration by a manual attach.
 - Adoption and a run of the `security-scan` starter.
 - Workflow linting with `actionlint`.
 - Behavior in a private repository.
