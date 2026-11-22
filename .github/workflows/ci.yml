@@ -13,7 +13,10 @@ name: CI
 # passes validation (Requirements 6.5, 15.1).
 
 on:
+  # Push runs only on the default branch. Pull requests cover the other
+  # branches, so a pushed pull request branch runs CI once.
   push:
+    branches: [main]
   pull_request:
 
 # Read-only permissions (Requirement 15.4): the validation job only checks out
